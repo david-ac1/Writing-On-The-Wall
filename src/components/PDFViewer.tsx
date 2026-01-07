@@ -228,8 +228,7 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
               renderMode="canvas"
               loading={
                 <div className="w-full h-96 bg-gray-100 animate-pulse flex items-center justify-center">
-                  <span className="text-gray-500 text-sm">Rendering page...</span>
-                </div> {pageNumber}...</span>
+                  <span className="text-gray-500 text-sm">Rendering page {pageNumber}...</span>
                 </div>
               }
               error={
@@ -240,7 +239,8 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
               }
               onRenderError={(error) => {
                 console.error('Page render error:', error);
-              }
+              }}
+            />
           </div>
         </Document>
       </div>
