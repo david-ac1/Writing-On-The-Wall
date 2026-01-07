@@ -27,6 +27,8 @@ export default function PDFPreview({ filePath }: PDFPreviewProps) {
       options={{
         cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
         cMapPacked: true,
+        disableStream: true,
+        disableAutoFetch: true,
       }}
     >
       <Page 
@@ -35,6 +37,7 @@ export default function PDFPreview({ filePath }: PDFPreviewProps) {
         height={320}
         renderTextLayer={false} 
         renderAnnotationLayer={false}
+        renderMode="canvas"
         loading={
           <div className="w-64 h-80 bg-gray-100 animate-pulse" />
         }

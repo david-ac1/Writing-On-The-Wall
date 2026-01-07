@@ -157,6 +157,8 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
             cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
             cMapPacked: true,
             standardFontDataUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/standard_fonts/',
+            disableStream: true,
+            disableAutoFetch: true,
           }}
         >
           <div className="shadow-2xl bg-white">
@@ -165,6 +167,7 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
               scale={scale}
               renderTextLayer={false}
               renderAnnotationLayer={false}
+              renderMode="canvas"
               loading={
                 <div className="w-full h-96 bg-gray-100 animate-pulse flex items-center justify-center">
                   <span className="text-gray-500 text-sm">Rendering page...</span>
