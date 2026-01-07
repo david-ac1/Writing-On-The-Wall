@@ -26,8 +26,8 @@ export default function Bookshelf({ works, onDocumentClick }: BookshelfProps & {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <header className="text-center mb-16">
-          <p className="text-gray-500 font-sans text-sm tracking-widest uppercase mb-2">
-            Ebuka&apos;s
+          <p className="text-gray-400 font-bold text-base tracking-widest uppercase mb-3" style={{ fontFamily: 'Georgia, serif', letterSpacing: '0.25em' }}>
+            ÈBỤKÀ&apos;S
           </p>
           <h1 className="text-5xl md:text-6xl font-serif font-bold text-deep-slate mb-4">
             Writing on the Wall
