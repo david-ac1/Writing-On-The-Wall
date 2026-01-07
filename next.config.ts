@@ -10,14 +10,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  webpack: (config) => {
-    // Ignore react-pdf CSS imports that don't exist
-    config.resolve.alias = {
-      ...config.resolve.alias,
+  turbopack: {
+    resolveAlias: {
+      // Ignore react-pdf CSS imports that don't exist
       'react-pdf/dist/esm/Page/AnnotationLayer.css': false,
       'react-pdf/dist/esm/Page/TextLayer.css': false,
-    };
-    return config;
+    },
   },
 };
 
