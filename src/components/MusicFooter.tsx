@@ -1,8 +1,28 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { FAVORITE_SONGS } from '@/lib/music';
 
 export default function MusicFooter() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop = document.documentElement.scrollTop;
+      const clientHeight = document.documentElement.clientHeight;
+      
+      // Show footer when user is within 200px of bottom
+      const isNearBottom = scrollHeight - scrollTop - clientHeight < 200;
+      setIsVisible(isNearBottom);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial position
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const gradients = [
     'linear-gradient(135deg, #4a044e, #a855f7)',
     'linear-gradient(135deg, #064e3b, #10b981)',
@@ -13,7 +33,7 @@ export default function MusicFooter() {
   ];
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 bg-[#1A1A1A] border-t border-gray-700 z-30 py-2">
+    <footer className={`fixed bottom-0 left-0 right-0 bg-[#1A1A1A] border-t border-gray-700 z-30 py-2 transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h3 className="text-white font-sans text-xs mb-2 tracking-wide opacity-70">
           Ebuka&apos;s favorite songs right now
