@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { Document as DocumentType } from '@/types';
 import dynamic from 'next/dynamic';
+import { PDFErrorBoundary } from './PDFErrorBoundary';
+import { FileText } from 'lucide-react';
 
 const PDFPreview = dynamic<{ filePath: string }>(
   () => import('./PDFPreview').then(mod => mod.default), 
@@ -31,8 +33,17 @@ export default function DocumentCard({ document, onClick }: DocumentCardProps) {
       style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
     >
       <div className="relative w-64 h-80 bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 transition-shadow group-hover:shadow-2xl">
-        {/* PDF First Page as Cover */}
-        <PDFPreview filePath={document.filePath} />
+        {/* PDF First Page as Cover with Error Boundary */}
+        <PDFErrorBoundary
+          fallback={
+            <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex flex-col items-center justify-center p-4">
+              <FileText size={48} className="text-gray-400 mb-2" />
+              <span className="text-gray-600 text-xs text-center">Preview unavailable</span>
+            </div>
+          }
+        >
+          <PDFPreview filePath={document.filePath} />
+        </PDFErrorBoundary>
         
         {/* Overlay on Hover */}
         <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300 flex items-end justify-center pb-6">

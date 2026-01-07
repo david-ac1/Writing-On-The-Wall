@@ -5,6 +5,7 @@ import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Document as WorkDocument } from '@/types';
 import dynamic from 'next/dynamic';
+import { PDFErrorBoundary } from './PDFErrorBoundary';
 
 // Dynamically import react-pdf to avoid SSR issues
 const PDFViewer = dynamic(() => import('./PDFViewer'), { ssr: false });
@@ -82,7 +83,9 @@ export default function FlipbookViewer({ document, isOpen, onClose }: FlipbookVi
               {/* Content */}
               <div className="w-full h-full pt-16 relative">
                 {document.type === 'pdf' && (
-                  <PDFViewer filePath={document.filePath} />
+                  <PDFErrorBoundary>
+                    <PDFViewer filePath={document.filePath} />
+                  </PDFErrorBoundary>
                 )}
                 {document.type === 'markdown' && (
                   <div className="p-8 overflow-auto h-full">
