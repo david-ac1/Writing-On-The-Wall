@@ -80,7 +80,7 @@ export default function FlipbookViewer({ document, isOpen, onClose }: FlipbookVi
               </div>
 
               {/* Content */}
-              <div className="w-full h-full pt-16">
+              <div className="w-full h-full pt-16 relative">
                 {document.type === 'pdf' && (
                   <PDFViewer filePath={document.filePath} />
                 )}

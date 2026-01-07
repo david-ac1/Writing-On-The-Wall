@@ -58,12 +58,13 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
 
       {/* Navigation Controls */}
       {numPages > 0 && (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-6 py-3 rounded-full flex items-center gap-4 font-mono">
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-6 py-3 rounded-full flex items-center gap-4 font-mono z-20">
           <button
             onClick={goToPrevPage}
             disabled={pageNumber <= 1}
             className="p-1 hover:bg-white hover:bg-opacity-20 rounded disabled:opacity-30 disabled:cursor-not-allowed transition-all"
             aria-label="Previous page"
+            type="button"
           >
             <ChevronLeft size={20} />
           </button>
@@ -77,6 +78,7 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
             disabled={pageNumber >= numPages}
             className="p-1 hover:bg-white hover:bg-opacity-20 rounded disabled:opacity-30 disabled:cursor-not-allowed transition-all"
             aria-label="Next page"
+            type="button"
           >
             <ChevronRight size={20} />
           </button>

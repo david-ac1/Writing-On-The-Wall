@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Bookshelf from '@/components/Bookshelf';
 import FlipbookViewer from '@/components/FlipbookViewer';
+import MusicFooter from '@/components/MusicFooter';
 import { works } from '@/lib/works';
 import { Document } from '@/types';
 
@@ -29,6 +30,7 @@ export default function Home() {
         isOpen={isViewerOpen}
         onClose={handleCloseViewer}
       />
+      <MusicFooter />
     </>
   );
 }

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Document } from '@/types';
-import AnimatedCover from './AnimatedCover';
+import UniqueAnimatedCover from './UniqueAnimatedCover';
 
 interface DocumentCardProps {
   document: Document;
@@ -19,9 +19,13 @@ export default function DocumentCard({ document, onClick }: DocumentCardProps) {
       style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
     >
       <div className="relative w-64 h-80 bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 transition-shadow group-hover:shadow-2xl">
-        {/* Animated Cover */}
+        {/* Unique Animated Cover */}
         <div className="relative w-full h-full">
-          <AnimatedCover category={document.category} title={document.title} />
+          <UniqueAnimatedCover 
+            documentId={document.id} 
+            title={document.title}
+            category={document.category}
+          />
           
           {/* Overlay on Hover */}
           <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-end justify-center pb-6">

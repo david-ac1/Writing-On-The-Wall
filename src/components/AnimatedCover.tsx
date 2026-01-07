@@ -1,19 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
 interface AnimatedCoverProps {
   category: 'Systems' | 'Sovereignty' | 'Witness';
   title: string;
-}
-
-interface Particle {
-  id: number;
-  x: number;
-  y: number;
-  duration: number;
-  delay: number;
 }
 
 const categoryStyles = {
@@ -31,20 +22,24 @@ const categoryStyles = {
   },
 };
 
-export default function AnimatedCover({ category, title }: AnimatedCoverProps) {
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const styles = categoryStyles[category];
+// Pre-generated particle positions for consistency
+const particleData = [
+  { id: 0, x: 15, y: 20, duration: 4.2, delay: 0.5 },
+  { id: 1, x: 75, y: 35, duration: 3.8, delay: 1.2 },
+  { id: 2, x: 40, y: 60, duration: 4.5, delay: 0.3 },
+  { id: 3, x: 85, y: 15, duration: 3.5, delay: 1.8 },
+  { id: 4, x: 25, y: 80, duration: 4.0, delay: 0.8 },
+  { id: 5, x: 60, y: 45, duration: 3.9, delay: 1.5 },
+  { id: 6, x: 10, y: 55, duration: 4.3, delay: 0.2 },
+  { id: 7, x: 90, y: 70, duration: 3.7, delay: 1.0 },
+  { id: 8, x: 50, y: 25, duration: 4.1, delay: 0.6 },
+  { id: 9, x: 70, y: 85, duration: 3.6, delay: 1.4 },
+  { id: 10, x: 35, y: 10, duration: 4.4, delay: 0.4 },
+  { id: 11, x: 55, y: 75, duration: 3.8, delay: 1.1 },
+];
 
-  useEffect(() => {
-    const newParticles = Array.from({ length: 12 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      duration: 3 + Math.random() * 2,
-      delay: Math.random() * 2,
-    }));
-    setParticles(newParticles);
-  }, []);
+export default function AnimatedCover({ category, title }: AnimatedCoverProps) {
+  const styles = categoryStyles[category];
 
   return (
     <div className="relative w-full h-full overflow-hidden">
@@ -67,7 +62,7 @@ export default function AnimatedCover({ category, title }: AnimatedCoverProps) {
       />
 
       {/* Floating particles */}
-      {particles.map((particle) => (
+      {particleData.map((particle) => (
         <motion.div
           key={particle.id}
           className="absolute w-2 h-2 rounded-full"
@@ -80,11 +75,11 @@ export default function AnimatedCover({ category, title }: AnimatedCoverProps) {
             y: [0, -30, 0],
             opacity: [0.2, 0.6, 0.2],
             scale: [1, 1.5, 1],
-          }}particle.duration,
+          }}
+          transition={{
+            duration: particle.duration,
             repeat: Infinity,
-            delay: particle.delaym() * 2,
-            repeat: Infinity,
-            delay: Math.random() * 2,
+            delay: particle.delay,
             ease: 'easeInOut',
           }}
         />

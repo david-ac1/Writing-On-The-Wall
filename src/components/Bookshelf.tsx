@@ -22,10 +22,13 @@ export default function Bookshelf({ works, onDocumentClick }: BookshelfProps & {
     : works;
 
   return (
-    <div className="min-h-screen bg-gallery-white py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gallery-white py-12 px-4 sm:px-6 lg:px-8 pb-24">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <header className="text-center mb-16">
+          <p className="text-gray-500 font-sans text-sm tracking-widest uppercase mb-2">
+            Ebuka&apos;s
+          </p>
           <h1 className="text-5xl md:text-6xl font-serif font-bold text-deep-slate mb-4">
             Writing on the Wall
           </h1>
