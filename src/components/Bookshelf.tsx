@@ -79,7 +79,6 @@ export default function Bookshelf({ works }: BookshelfProps) {
                 <DocumentCard
                   key={work.id}
                   document={work}
-                  onClick={() => {}}
                 />
               ))}
             </div>
@@ -100,7 +99,6 @@ export default function Bookshelf({ works }: BookshelfProps) {
                     <DocumentCard
                       key={work.id}
                       document={work}
-                      onClick={() => {}}
                     />
                   ))}
                 </div>

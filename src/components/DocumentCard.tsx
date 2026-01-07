@@ -2,27 +2,14 @@
 
 import { motion } from 'framer-motion';
 import { Document as DocumentType } from '@/types';
-import { ExternalLink, FileText } from 'lucide-react';
-import dynamic from 'next/dynamic';
-
-const PDFPreview = dynamic<{ filePath: string }>(
-  () => import('./PDFPreview').then(mod => mod.default), 
-  { 
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse flex items-center justify-center">
-        <span className="text-gray-500 text-xs">Loading preview...</span>
-      </div>
-    )
-  }
-);
+import { ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 
 interface DocumentCardProps {
   document: DocumentType;
-  onClick: () => void;
 }
 
-export default function DocumentCard({ document, onClick }: DocumentCardProps) {
+export default function DocumentCard({ document }: DocumentCardProps) {
   const handleClick = () => {
     // Open PDF in new tab using native browser viewer
     window.open(document.filePath, '_blank');
@@ -37,9 +24,13 @@ export default function DocumentCard({ document, onClick }: DocumentCardProps) {
       style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
     >
       <div className="relative w-64 h-80 bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 transition-shadow group-hover:shadow-2xl">
-        {/* PDF First Page Preview - with fallback */}
-        <div className="w-full h-full">
-          <PDFPreview filePath={document.filePath} />
+        {/* PDF Preview using iframe */}
+        <div className="w-full h-full pointer-events-none">
+          <iframe
+            src={`${document.filePath}#page=1&view=FitH&toolbar=0&navpanes=0&scrollbar=0`}
+            className="w-full h-full border-0"
+            title={`Preview of ${document.title}`}
+          />
         </div>
         
         {/* Overlay on Hover */}
