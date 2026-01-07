@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { Document as DocumentType } from '@/types';
-import { Document, Page, pdfjs } from 'react-pdf';
+import dynamic from 'next/dynamic';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+const PDFPreview = dynamic(() => import('./PDFPreview'), { ssr: false });
 
 interface DocumentCardProps {
   document: DocumentType;
@@ -22,9 +22,7 @@ export default function DocumentCard({ document, onClick }: DocumentCardProps) {
     >
       <div className="relative w-64 h-80 bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 transition-shadow group-hover:shadow-2xl">
         {/* PDF First Page as Cover */}
-        <Document file={document.filePath} loading={<div className="w-full h-full bg-gray-100 animate-pulse" />}>
-          <Page pageNumber={1} width={256} renderTextLayer={false} renderAnnotationLayer={false} />
-        </Document>
+        <PDFPreview filePath={document.filePath} />
         
         {/* Overlay on Hover */}
         <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300 flex items-end justify-center pb-6">
