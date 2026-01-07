@@ -14,7 +14,7 @@ const categories: { name: Category; description: string }[] = [
   { name: 'Witness', description: 'Poetry, narrative, and human experience' },
 ];
 
-export default function Bookshelf({ works, onDocumentClick }: BookshelfProps & { onDocumentClick: (doc: Document) => void }) {
+export default function Bookshelf({ works }: BookshelfProps) {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
 
   const filteredWorks = selectedCategory
@@ -79,7 +79,7 @@ export default function Bookshelf({ works, onDocumentClick }: BookshelfProps & {
                 <DocumentCard
                   key={work.id}
                   document={work}
-                  onClick={() => onDocumentClick(work)}
+                  onClick={() => {}}
                 />
               ))}
             </div>
@@ -100,7 +100,7 @@ export default function Bookshelf({ works, onDocumentClick }: BookshelfProps & {
                     <DocumentCard
                       key={work.id}
                       document={work}
-                      onClick={() => onDocumentClick(work)}
+                      onClick={() => {}}
                     />
                   ))}
                 </div>
