@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize2, AlertCircle } from 'lucide-react';
 
-if (typeof window !== 'undefined') {
-  pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+if (typeof window !== 'undefined' && !pdfjs.GlobalWorkerOptions.workerSrc) {
+  pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
 }
 
 interface PDFViewerProps {
@@ -210,13 +210,14 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
           }
           error={null}
           options={{
-            cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
+            cMapUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/cmaps/`,
             cMapPacked: true,
-            standardFontDataUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/standard_fonts/',
+            standardFontDataUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/standard_fonts/`,
             disableStream: true,
             disableAutoFetch: true,
             isEvalSupported: false,
             useSystemFonts: true,
+            enableXfa: false,
           }}
         >
           <div className="shadow-2xl bg-white">

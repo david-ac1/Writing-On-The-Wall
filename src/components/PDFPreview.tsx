@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { FileText } from 'lucide-react';
 
-if (typeof window !== 'undefined') {
-  pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+if (typeof window !== 'undefined' && !pdfjs.GlobalWorkerOptions.workerSrc) {
+  pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
 }
 
 interface PDFPreviewProps {
@@ -41,12 +41,13 @@ export default function PDFPreview({ filePath }: PDFPreviewProps) {
       }
       error={null}
       options={{
-        cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
+        cMapUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/cmaps/`,
         cMapPacked: true,
         disableStream: true,
         disableAutoFetch: true,
         isEvalSupported: false,
         useSystemFonts: true,
+        enableXfa: false,
       }}
     >
       <Page 
