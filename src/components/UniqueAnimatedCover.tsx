@@ -149,7 +149,8 @@ export default function UniqueAnimatedCover({ documentId, title }: UniqueAnimate
           }}
           transition={{
             duration: 3,
-            repeat: Infinity,            repeatType: 'loop',            repeatType: 'loop',
+            repeat: Infinity,
+            repeatType: 'loop',
             ease: 'easeInOut',
           }}
         >
