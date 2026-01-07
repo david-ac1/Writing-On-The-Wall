@@ -2,7 +2,20 @@
 
 import { motion } from 'framer-motion';
 import { Document as DocumentType } from '@/types';
-import { FileText, ExternalLink } from 'lucide-react';
+import { ExternalLink, FileText } from 'lucide-react';
+import dynamic from 'next/dynamic';
+
+const PDFPreview = dynamic<{ filePath: string }>(
+  () => import('./PDFPreview').then(mod => mod.default), 
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse flex items-center justify-center">
+        <span className="text-gray-500 text-xs">Loading preview...</span>
+      </div>
+    )
+  }
+);
 
 interface DocumentCardProps {
   document: DocumentType;
@@ -23,33 +36,36 @@ export default function DocumentCard({ document, onClick }: DocumentCardProps) {
       onClick={handleClick}
       style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
     >
-      <div className="relative w-64 h-80 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg shadow-lg overflow-hidden border border-gray-200 transition-shadow group-hover:shadow-2xl flex flex-col items-center justify-center p-6">
-        {/* Document Icon */}
-        <div className="mb-4">
-          <FileText size={64} className="text-gray-400 group-hover:text-blue-600 transition-colors" />
+      <div className="relative w-64 h-80 bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 transition-shadow group-hover:shadow-2xl">
+        {/* PDF First Page Preview - with fallback */}
+        <div className="w-full h-full">
+          <PDFPreview filePath={document.filePath} />
         </div>
         
-        {/* Title */}
-        <h3 className="text-gray-900 font-serif text-lg font-bold text-center mb-2 line-clamp-3">
-          {document.title}
-        </h3>
+        {/* Overlay on Hover */}
+        <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
         
-        {/* Description */}
-        {document.description && (
-          <p className="text-gray-600 text-sm text-center line-clamp-2 mb-4">
-            {document.description}
-          </p>
-        )}
-        
-        {/* Open Indicator */}
-        <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-          <span className="text-blue-600 text-sm font-medium flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-md">
+        {/* Open Indicator on Hover */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <span className="text-white text-sm font-medium flex items-center gap-2 bg-black bg-opacity-60 px-4 py-2 rounded-full">
             Open PDF <ExternalLink size={16} />
           </span>
         </div>
         
+        {/* Title Bar */}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+          <h3 className="text-white font-serif text-lg font-bold line-clamp-2">
+            {document.title}
+          </h3>
+          {document.description && (
+            <p className="text-gray-300 text-xs mt-1 line-clamp-1">
+              {document.description}
+            </p>
+          )}
+        </div>
+        
         {/* Category Badge */}
-        <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full shadow-sm">
+        <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity">
           <span className="text-xs font-mono text-gray-600 uppercase">
             {document.category}
           </span>
