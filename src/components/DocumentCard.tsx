@@ -4,7 +4,17 @@ import { motion } from 'framer-motion';
 import { Document as DocumentType } from '@/types';
 import dynamic from 'next/dynamic';
 
-const PDFPreview = dynamic(() => import('./PDFPreview'), { ssr: false });
+const PDFPreview = dynamic<{ filePath: string }>(
+  () => import('./PDFPreview').then(mod => mod.default), 
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse flex items-center justify-center">
+        <span className="text-gray-500 text-xs">Loading...</span>
+      </div>
+    )
+  }
+);
 
 interface DocumentCardProps {
   document: DocumentType;
