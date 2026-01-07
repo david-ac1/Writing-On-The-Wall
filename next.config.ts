@@ -12,9 +12,9 @@ const nextConfig: NextConfig = {
   },
   turbopack: {
     resolveAlias: {
-      // Ignore react-pdf CSS imports that don't exist
-      'react-pdf/dist/esm/Page/AnnotationLayer.css': false,
-      'react-pdf/dist/esm/Page/TextLayer.css': false,
+      // Redirect react-pdf CSS imports to empty file since they don't exist
+      'react-pdf/dist/esm/Page/AnnotationLayer.css': './src/lib/empty.css',
+      'react-pdf/dist/esm/Page/TextLayer.css': './src/lib/empty.css',
     },
   },
 };
