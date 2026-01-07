@@ -163,8 +163,8 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
             <Page
               pageNumber={pageNumber}
               scale={scale}
-              renderTextLayer={true}
-              renderAnnotationLayer={true}
+              renderTextLayer={false}
+              renderAnnotationLayer={false}
               loading={
                 <div className="w-full h-96 bg-gray-100 animate-pulse flex items-center justify-center">
                   <span className="text-gray-500 text-sm">Rendering page...</span>
