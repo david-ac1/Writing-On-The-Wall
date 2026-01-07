@@ -16,15 +16,17 @@ A minimalist, immersive digital archive built with Next.js. This project present
 ### User Experience
 - **PDF-as-Cover**: First page of each document automatically displays as the cover
 - **Interactive Cards**: 3D hover effects powered by Framer Motion
-- **Flipbook Viewer**: Modal PDF viewer with page navigation (Escape or click outside to close)
+- **Enhanced PDF Viewer**: Modal viewer with zoom (50%-250%), fullscreen mode, and keyboard navigation
+- **Accessibility**: WCAG compliant with ARIA labels, keyboard shortcuts, and screen reader support
 - **Cultural Background**: Fixed Afro-geometric patterns in beige and royal blue
 - **Music Footer**: Personal music collection appears when scrolling to page end
 
 ### Technical Highlights
 - **Flat-File Architecture**: All content managed through simple TypeScript manifests
 - **Typography**: Georgia serif for signature, Playfair Display for headings, JetBrains Mono for code
-- **Performance**: Next.js 16 with App Router and Turbopack
+- **Performance**: Next.js 16 with App Router, optimized PDF rendering with caching
 - **Type-Safe**: Full TypeScript implementation
+- **A11y Compliant**: Keyboard navigation (Arrow keys, F for fullscreen, Escape to close)
 
 ---
 
@@ -70,8 +72,9 @@ writing-on-the-wall/
 │   ├── components/
 │   │   ├── Bookshelf.tsx        # Main gallery with category filters
 │   │   ├── DocumentCard.tsx     # Document cards with PDF preview
-│   │   ├── FlipbookViewer.tsx   # Modal PDF viewer
-│   │   ├── PDFViewer.tsx        # PDF page navigation
+│   │   ├── PDFPreview.tsx       # Optimized first-page preview component
+│   │   ├── FlipbookViewer.tsx   # Modal PDF viewer overlay
+│   │   ├── PDFViewer.tsx        # Enhanced PDF viewer with zoom & fullscreen
 │   │   └── MusicFooter.tsx      # Bottom music collection
 │   ├── lib/
 │   │   ├── works.ts       # Document manifest (13 works)
@@ -180,8 +183,20 @@ Or connect your GitHub repository to [Vercel](https://vercel.com) for automatic 
 - **Content First**: Documents are the hero, UI stays minimal
 - **Cultural Identity**: Nsibidi patterns honor African design heritage
 - **Physical Feel**: Cards with depth, realistic hover interactions
-- **Fast & Accessible**: Keyboard navigation (Escape key), semantic HTML
+- **Accessible**: WCAG 2.1 AA compliant with full keyboard navigation and ARIA support
+- **Fast & Responsive**: Optimized PDF loading with progressive rendering
 - **No Bloat**: Direct file structure, no CMS complexity
+
+---
+
+## ⌨️ Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `←` / `→` | Navigate PDF pages |
+| `F` | Toggle fullscreen mode |
+| `Escape` | Close PDF viewer |
+| `Tab` | Navigate between controls |
 
 ---
 
