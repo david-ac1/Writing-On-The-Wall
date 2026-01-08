@@ -5,7 +5,6 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Github, Linkedin, Mail, Instagram } from 'lucide-react';
-import AbujaGate from '@/components/AbujaGate';
 import MusicalNotes from '@/components/MusicalNotes';
 
 function AnimatedParagraph({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -18,8 +17,7 @@ function AnimatedParagraph({ children, delay = 0 }: { children: React.ReactNode;
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.6, delay }}
-      className="text-lg md:text-xl leading-relaxed mb-6 text-gray-700"
-      style={{ fontFamily: 'Georgia, serif' }}
+      className="text-lg md:text-xl leading-relaxed mb-6 text-gray-700 font-mono"
     >
       {children}
     </motion.p>
@@ -27,11 +25,13 @@ function AnimatedParagraph({ children, delay = 0 }: { children: React.ReactNode;
 }
 
 export default function AboutPage() {
-  const [showGate, setShowGate] = useState(false);
+  const [showLagos, setShowLagos] = useState(false);
+  const [showAbuja, setShowAbuja] = useState(false);
+  const [showNigeria, setShowNigeria] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#FFFEF9] relative overflow-x-hidden">
+    <div className="min-h-screen relative overflow-x-hidden" style={{ background: 'var(--background)' }}>
       {/* Back to Home Link */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -44,7 +44,7 @@ export default function AboutPage() {
           className="text-gray-700 hover:text-gray-900 font-bold tracking-widest uppercase transition-colors"
           style={{ fontFamily: 'Georgia, serif', letterSpacing: '0.25em' }}
         >
-          ÈBỤKÀ&apos;S
+          ← ÈBỤKÀ&apos;S
         </Link>
       </motion.div>
 
@@ -74,73 +74,110 @@ export default function AboutPage() {
             </div>
           </motion.div>
 
-          {/* Handwritten-style heading */}
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="text-5xl md:text-6xl text-center mb-16 text-gray-900"
-            style={{ 
-              fontFamily: "'Comic Sans MS', 'Brush Script MT', cursive",
-              fontWeight: 'bold'
-            }}
-          >
-            Hey, I&apos;m Ebuka
-          </motion.h1>
-        </div>
-      </section>
+          {/* Main Content */}
+          <div className="space-y-8">
+            <AnimatedParagraph delay={0.1}>
+              Hey, I&apos;m Ebuka.
+            </AnimatedParagraph>
 
-      {/* Story Section */}
-      <section className="max-w-3xl mx-auto px-6 py-20">
-        <AnimatedParagraph delay={0.1}>
-          I&apos;m a technologist, writer, and builder fascinated by the intersection of policy, 
-          infrastructure, and human stories.
-        </AnimatedParagraph>
+            <AnimatedParagraph delay={0.2}>
+              Born to be a writer. Forced to code. Then I realized I can do both.
+            </AnimatedParagraph>
 
-        <AnimatedParagraph delay={0.2}>
-          Originally from{' '}
-          <span 
-            className="relative inline-block cursor-pointer font-semibold text-green-700 hover:text-green-900 transition-colors"
-            onMouseEnter={() => setShowGate(true)}
-            onMouseLeave={() => setShowGate(false)}
-          >
-            Abuja, Nigeria
-            {showGate && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
+            <AnimatedParagraph delay={0.3}>
+              I was born in{' '}
+              <span 
+                className="relative inline-block cursor-pointer font-bold text-blue-600 hover:text-blue-800 transition-colors"
+                onMouseEnter={() => setShowLagos(true)}
+                onMouseLeave={() => setShowLagos(false)}
               >
-                <AbujaGate />
-              </motion.div>
-            )}
-          </span>
-          , I spend my time building systems that blend technical rigor with poetic thinking.
-        </AnimatedParagraph>
+                Lagos
+                {showLagos && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, y: 10 }}
+                    className="absolute -top-32 left-1/2 transform -translate-x-1/2 z-50 bg-white p-2 rounded-lg shadow-xl border-2 border-gray-200"
+                  >
+                    <Image
+                      src="/lagos.png"
+                      alt="Lagos skyline"
+                      width={200}
+                      height={80}
+                      className="rounded"
+                    />
+                  </motion.div>
+                )}
+              </span>
+              , live in{' '}
+              <span 
+                className="relative inline-block cursor-pointer font-bold text-green-700 hover:text-green-900 transition-colors"
+                onMouseEnter={() => setShowAbuja(true)}
+                onMouseLeave={() => setShowAbuja(false)}
+              >
+                Abuja
+                {showAbuja && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, y: 10 }}
+                    className="absolute -top-44 left-1/2 transform -translate-x-1/2 z-50 bg-white p-2 rounded-lg shadow-xl border-2 border-gray-200"
+                  >
+                    <Image
+                      src="/abuja.png"
+                      alt="Abuja City Gate"
+                      width={120}
+                      height={160}
+                      className="rounded"
+                    />
+                  </motion.div>
+                )}
+              </span>
+              , and was raised in{' '}
+              <span 
+                className="relative inline-block cursor-pointer font-bold text-green-600 hover:text-green-800 transition-colors"
+                onMouseEnter={() => setShowNigeria(true)}
+                onMouseLeave={() => setShowNigeria(false)}
+              >
+                Nigeria
+                {showNigeria && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, y: 10 }}
+                    className="absolute -top-24 left-1/2 transform -translate-x-1/2 z-50 bg-white p-2 rounded-lg shadow-xl border-2 border-gray-200"
+                  >
+                    <Image
+                      src="/nigeria.png"
+                      alt="Nigerian flag"
+                      width={150}
+                      height={100}
+                      className="rounded"
+                    />
+                  </motion.div>
+                )}
+              </span>
+              .
+            </AnimatedParagraph>
 
-        <AnimatedParagraph delay={0.3}>
-          My work spans technical writing, policy frameworks, and creative explorations—
-          everything from blockchain governance to narrative storytelling.
-        </AnimatedParagraph>
+            <AnimatedParagraph delay={0.4}>
+              <span className="font-bold">Favorite writers:</span> Rick Riordan, James Baldwin, Ocean Vuong, and Roald Dahl.
+            </AnimatedParagraph>
 
-        <AnimatedParagraph delay={0.4}>
-          When I&apos;m not writing or coding, you&apos;ll find me{' '}
-          <span 
-            className="relative inline-block cursor-pointer font-semibold text-blue-600 hover:text-blue-800 transition-colors"
-            onMouseEnter={() => setShowNotes(true)}
-            onMouseLeave={() => setShowNotes(false)}
-          >
-            singing along to alt-rock
-            {showNotes && <MusicalNotes />}
-          </span>
-          , exploring cities on foot, or deep in conversation about systems, sovereignty, and the future.
-        </AnimatedParagraph>
-
-        <AnimatedParagraph delay={0.5}>
-          This site is my digital garden—a collection of technical work, policy frameworks, 
-          and narrative experiments. It&apos;s a space for thinking out loud, building in public, 
-          and connecting with people who care about these ideas.
-        </AnimatedParagraph>
+            <AnimatedParagraph delay={0.5}>
+              If this isn&apos;t enough to hire me, I{' '}
+              <span 
+                className="relative inline-block cursor-pointer font-bold text-purple-600 hover:text-purple-800 transition-colors"
+                onMouseEnter={() => setShowNotes(true)}
+                onMouseLeave={() => setShowNotes(false)}
+              >
+                sing
+                {showNotes && <MusicalNotes />}
+              </span>
+              . Really well. And I can do accents.
+            </AnimatedParagraph>
+          </div>
+        </div>
       </section>
 
       {/* Contact Section */}
@@ -152,25 +189,8 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h2 
-            className="text-3xl md:text-4xl mb-8 text-gray-900"
-            style={{ 
-              fontFamily: "'Comic Sans MS', 'Brush Script MT', cursive",
-              fontWeight: 'bold'
-            }}
-          >
-            Let&apos;s Connect
-          </h2>
-          
-          <p 
-            className="text-lg md:text-xl mb-12 text-gray-700"
-            style={{ fontFamily: 'Georgia, serif' }}
-          >
-            Click the links if you want to say hi, collaborate, have coffee, or you know, hire me.
-          </p>
-
           {/* Social Links */}
-          <div className="flex justify-center gap-8 flex-wrap">
+          <div className="flex justify-center gap-8 flex-wrap mb-8">
             {[
               { Icon: Github, href: 'https://github.com/david-ac1', label: 'GitHub' },
               { Icon: Linkedin, href: 'https://linkedin.com/in/ebuka', label: 'LinkedIn' },
@@ -195,27 +215,14 @@ export default function AboutPage() {
               </motion.a>
             ))}
           </div>
+          
+          <p 
+            className="text-base text-gray-600 font-mono"
+          >
+            Click the links if you want to say hi, collaborate, have coffee, or you know, hire me.
+          </p>
         </motion.div>
       </section>
-
-      {/* Footer Sketch Doodle */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.3 }}
-        viewport={{ once: true }}
-        className="fixed bottom-8 right-8 pointer-events-none"
-      >
-        <svg width="100" height="100" viewBox="0 0 100 100">
-          <path
-            d="M20,50 Q35,20 50,50 T80,50"
-            stroke="#1A1A1A"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <circle cx="50" cy="50" r="3" fill="#1A1A1A" />
-        </svg>
-      </motion.div>
     </div>
   );
 }
