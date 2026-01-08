@@ -97,7 +97,7 @@ export default function AboutPage() {
                     initial={{ opacity: 0, scale: 0.8, y: 10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.8, y: 10 }}
-                    className="absolute -top-40 left-1/2 transform -translate-x-1/2 z-50 bg-white p-3 rounded-lg shadow-xl border-2 border-gray-200"
+                    className="absolute -top-40 left-1/2 transform -translate-x-1/2 z-[100] bg-white p-3 rounded-lg shadow-2xl border-2 border-gray-900"
                   >
                     <Image
                       src="/lagos.png"
@@ -105,6 +105,7 @@ export default function AboutPage() {
                       width={350}
                       height={140}
                       className="rounded"
+                      unoptimized
                     />
                   </motion.div>
                 )}
@@ -121,7 +122,7 @@ export default function AboutPage() {
                     initial={{ opacity: 0, scale: 0.8, y: 10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.8, y: 10 }}
-                    className="absolute -top-72 left-1/2 transform -translate-x-1/2 z-50 bg-white p-3 rounded-lg shadow-xl border-2 border-gray-200"
+                    className="absolute -top-72 left-1/2 transform -translate-x-1/2 z-[100] bg-white p-3 rounded-lg shadow-2xl border-2 border-gray-900"
                   >
                     <Image
                       src="/abuja.png"
@@ -129,6 +130,7 @@ export default function AboutPage() {
                       width={200}
                       height={280}
                       className="rounded"
+                      unoptimized
                     />
                   </motion.div>
                 )}
@@ -145,7 +147,7 @@ export default function AboutPage() {
                     initial={{ opacity: 0, scale: 0.8, y: 10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.8, y: 10 }}
-                    className="absolute -top-24 left-1/2 transform -translate-x-1/2 z-50 bg-white p-2 rounded-lg shadow-xl border-2 border-gray-200"
+                    className="absolute -top-24 left-1/2 transform -translate-x-1/2 z-[100] bg-white p-2 rounded-lg shadow-2xl border-2 border-gray-900"
                   >
                     <Image
                       src="/nigeria.png"
@@ -153,6 +155,7 @@ export default function AboutPage() {
                       width={150}
                       height={100}
                       className="rounded"
+                      unoptimized
                     />
                   </motion.div>
                 )}
