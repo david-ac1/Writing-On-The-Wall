@@ -212,8 +212,8 @@ export default function AboutPage() {
               <motion.a
                 key={label}
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={href.startsWith('mailto:') ? undefined : '_blank'}
+                rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
                 className="group flex flex-col items-center gap-2"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
