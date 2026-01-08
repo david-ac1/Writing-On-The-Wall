@@ -92,23 +92,6 @@ export default function AboutPage() {
                 onMouseLeave={() => setShowLagos(false)}
               >
                 Lagos
-                {showLagos && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.8, y: 10 }}
-                    className="absolute -top-40 left-1/2 transform -translate-x-1/2 z-[100] bg-white p-3 rounded-lg shadow-2xl border-2 border-gray-900"
-                  >
-                    <Image
-                      src="/lagos.png"
-                      alt="Lagos skyline"
-                      width={350}
-                      height={140}
-                      className="rounded"
-                      unoptimized
-                    />
-                  </motion.div>
-                )}
               </span>
               , live in{' '}
               <span 
@@ -117,23 +100,6 @@ export default function AboutPage() {
                 onMouseLeave={() => setShowAbuja(false)}
               >
                 Abuja
-                {showAbuja && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.8, y: 10 }}
-                    className="absolute -top-72 left-1/2 transform -translate-x-1/2 z-[100] bg-white p-3 rounded-lg shadow-2xl border-2 border-gray-900"
-                  >
-                    <Image
-                      src="/abuja.png"
-                      alt="Abuja City Gate"
-                      width={200}
-                      height={280}
-                      className="rounded"
-                      unoptimized
-                    />
-                  </motion.div>
-                )}
               </span>
               , and was raised in{' '}
               <span 
@@ -142,26 +108,69 @@ export default function AboutPage() {
                 onMouseLeave={() => setShowNigeria(false)}
               >
                 Nigeria
-                {showNigeria && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.8, y: 10 }}
-                    className="absolute -top-24 left-1/2 transform -translate-x-1/2 z-[100] bg-white p-2 rounded-lg shadow-2xl border-2 border-gray-900"
-                  >
-                    <Image
-                      src="/nigeria.png"
-                      alt="Nigerian flag"
-                      width={150}
-                      height={100}
-                      className="rounded"
-                      unoptimized
-                    />
-                  </motion.div>
-                )}
               </span>
               .
             </AnimatedParagraph>
+
+            {/* Lagos Popup - Fixed position */}
+            {showLagos && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="fixed top-1/4 left-1/2 transform -translate-x-1/2 z-[100] bg-white p-4 rounded-xl shadow-2xl border-4 border-blue-600"
+              >
+                <Image
+                  src="/lagos.png"
+                  alt="Lagos skyline"
+                  width={400}
+                  height={160}
+                  className="rounded-lg"
+                  unoptimized
+                />
+                <p className="text-center mt-2 font-mono text-sm text-gray-700">Lagos, Nigeria 🇳🇬</p>
+              </motion.div>
+            )}
+
+            {/* Abuja Popup - Fixed position */}
+            {showAbuja && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="fixed top-1/4 left-1/2 transform -translate-x-1/2 z-[100] bg-white p-4 rounded-xl shadow-2xl border-4 border-green-700"
+              >
+                <Image
+                  src="/abuja.png"
+                  alt="Abuja City Gate"
+                  width={220}
+                  height={300}
+                  className="rounded-lg"
+                  unoptimized
+                />
+                <p className="text-center mt-2 font-mono text-sm text-gray-700">Abuja City Gate</p>
+              </motion.div>
+            )}
+
+            {/* Nigeria Popup - Fixed position */}
+            {showNigeria && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="fixed top-1/4 left-1/2 transform -translate-x-1/2 z-[100] bg-white p-4 rounded-xl shadow-2xl border-4 border-green-600"
+              >
+                <Image
+                  src="/nigeria.png"
+                  alt="Nigerian flag"
+                  width={180}
+                  height={120}
+                  className="rounded-lg"
+                  unoptimized
+                />
+                <p className="text-center mt-2 font-mono text-sm text-gray-700">Nigerian Flag 🇳🇬</p>
+              </motion.div>
+            )}
 
             <AnimatedParagraph delay={0.4}>
               <span className="font-bold">Favorite writers:</span> Rick Riordan, James Baldwin, Ocean Vuong, and Roald Dahl.
