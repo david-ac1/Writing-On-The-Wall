@@ -193,7 +193,7 @@ export default function AboutPage() {
           <div className="flex justify-center gap-8 flex-wrap mb-8">
             {[
               { Icon: Github, href: 'https://github.com/david-ac1', label: 'GitHub' },
-              { Icon: Linkedin, href: 'https://linkedin.com/in/davidachibir1', label: 'LinkedIn' },
+              { Icon: Linkedin, href: 'https://linkedin.com/in/davidachibiri1', label: 'LinkedIn' },
               { Icon: Mail, href: 'mailto:davidachibiri8@gmail.com', label: 'Email' },
               { Icon: Instagram, href: 'https://instagram.com/comme_c_ebuka', label: 'Instagram' },
             ].map(({ Icon, href, label }) => (
