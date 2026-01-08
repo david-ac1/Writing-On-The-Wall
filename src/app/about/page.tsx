@@ -31,7 +31,7 @@ export default function AboutPage() {
   const [showNotes, setShowNotes] = useState(false);
 
   return (
-    <div className="min-h-screen relative overflow-x-hidden" style={{ background: 'var(--background)' }}>
+    <div className="min-h-screen relative overflow-x-hidden">
       {/* Back to Home Link */}
       <motion.div
         initial={{ opacity: 0 }}
