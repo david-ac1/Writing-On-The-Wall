@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import DocumentCard from './DocumentCard';
+import { AnimatedText } from '@/components/ui/animated-underline-text-one';
 import { Document, Category } from '@/types';
 
 interface BookshelfProps {
@@ -29,11 +31,28 @@ export default function Bookshelf({ works }: BookshelfProps) {
         <header className="text-center mb-16">
           <Link 
             href="/about"
-            className="inline-block hover:opacity-70 transition-opacity"
+            className="inline-block"
           >
-            <p className="text-gray-700 font-bold text-base tracking-widest uppercase mb-3" style={{ fontFamily: 'Georgia, serif', letterSpacing: '0.25em' }}>
-              ÈBỤKÀ&apos;S
-            </p>
+            <motion.div
+              initial={{ y: 0 }}
+              animate={{ 
+                y: [0, -10, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatDelay: 3,
+                ease: "easeInOut"
+              }}
+            >
+              <AnimatedText 
+                text="ÈBỤKÀ'S"
+                textClassName="text-gray-700 font-bold text-base tracking-widest uppercase mb-3"
+                underlineClassName="text-gray-700"
+                underlineDuration={2}
+                className="mb-3"
+              />
+            </motion.div>
           </Link>
           <h1 className="text-5xl md:text-6xl font-serif font-bold text-deep-slate mb-4">
             Writing on the Wall
