@@ -124,6 +124,15 @@ export const works: Document[] = [
     description: 'Epic narrative poem',
     type: 'pdf',
   },
+  {
+    id: 'in-the-desert',
+    title: 'In the Desert',
+    category: 'Witness',
+    coverImage: '/document-covers/in-the-desert.jpg',
+    filePath: '/witness/In the Desert.pdf',
+    description: 'Poetry and narrative reflection',
+    type: 'pdf',
+  },
 ];
 
 export const getCategoryWorks = (category: Document['category']) => {
