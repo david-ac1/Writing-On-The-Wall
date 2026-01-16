@@ -27,9 +27,10 @@ export default function DocumentCard({ document }: DocumentCardProps) {
         {/* PDF Preview using iframe */}
         <div className="w-full h-full pointer-events-none">
           <iframe
-            src={`${document.filePath}#page=1&view=FitH&toolbar=0&navpanes=0&scrollbar=0`}
+            src={`${document.filePath}#page=1&view=FitH&toolbar=0&navpanes=0&scrollbar=0${document.rotation ? `&rotate=${document.rotation}` : ''}`}
             className="w-full h-full border-0"
             title={`Preview of ${document.title}`}
+            style={document.rotation ? { transform: `rotate(${document.rotation}deg)` } : undefined}
           />
         </div>
         

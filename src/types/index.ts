@@ -9,6 +9,7 @@ export interface Document {
   description?: string;
   date?: string;
   type: 'pdf' | 'markdown';
+  rotation?: 90 | 180 | 270;
 }
 
 export interface DocumentManifest {

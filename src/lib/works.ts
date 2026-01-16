@@ -133,6 +133,16 @@ export const works: Document[] = [
     description: 'Poetry and narrative reflection',
     type: 'pdf',
   },
+  {
+    id: 'commonwealth-short-story',
+    title: 'CommonWealth Short Story Prize 2025',
+    category: 'Witness',
+    coverImage: '/document-covers/commonwealth-short-story.jpg',
+    filePath: '/witness/CommonWealth Short Story Prize 2025 (1).pdf',
+    description: 'Short story competition entry',
+    type: 'pdf',
+    rotation: 270,
+  },
 ];
 
 export const getCategoryWorks = (category: Document['category']) => {
