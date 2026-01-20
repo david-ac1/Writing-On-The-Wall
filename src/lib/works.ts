@@ -143,6 +143,15 @@ export const works: Document[] = [
     type: 'pdf',
     rotation: 270,
   },
+  {
+    id: 'duniya',
+    title: 'Duniya',
+    category: 'Witness',
+    coverImage: '/document-covers/duniya.jpg',
+    filePath: '/witness/Duniya.pdf',
+    description: 'Narrative exploration',
+    type: 'pdf',
+  },
 ];
 
 export const getCategoryWorks = (category: Document['category']) => {
