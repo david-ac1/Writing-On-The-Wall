@@ -4,7 +4,7 @@ import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "Writing on the Wall",
-  description: "A digital archive of technical work, policy frameworks, and narrative explorations",
+  description: "A narrative-first archive with hidden technical and academic drawers",
 };
 
 export default function RootLayout({
