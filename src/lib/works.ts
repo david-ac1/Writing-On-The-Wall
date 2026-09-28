@@ -62,6 +62,15 @@ export const works: Document[] = [
   
   // Witness (Poetry/Narrative)
   {
+    id: 'avocadoes',
+    title: 'Avocadoes',
+    category: 'Witness',
+    coverImage: '/document-covers/avocadoes.jpg',
+    filePath: '/witness/AVOCADOES.pdf',
+    description: 'Poem on decay and desire',
+    type: 'pdf',
+  },
+  {
     id: 'shot-glass',
     title: 'A Shot Glass Is The Fullness Of Emptiness',
     category: 'Witness',

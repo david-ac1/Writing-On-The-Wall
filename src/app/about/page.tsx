@@ -25,9 +25,6 @@ function AnimatedParagraph({ children, delay = 0 }: { children: React.ReactNode;
 }
 
 export default function AboutPage() {
-  const [showLagos, setShowLagos] = useState(false);
-  const [showAbuja, setShowAbuja] = useState(false);
-  const [showNigeria, setShowNigeria] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
 
   return (
@@ -83,94 +80,6 @@ export default function AboutPage() {
             <AnimatedParagraph delay={0.2}>
               Born to be a writer. Forced to code. Then I realized I can do both.
             </AnimatedParagraph>
-
-            <AnimatedParagraph delay={0.3}>
-              I was born in{' '}
-              <span 
-                className="relative inline-block cursor-pointer font-bold text-blue-600 hover:text-blue-800 transition-colors"
-                onMouseEnter={() => setShowLagos(true)}
-                onMouseLeave={() => setShowLagos(false)}
-              >
-                Lagos
-              </span>
-              , live in{' '}
-              <span 
-                className="relative inline-block cursor-pointer font-bold text-green-700 hover:text-green-900 transition-colors"
-                onMouseEnter={() => setShowAbuja(true)}
-                onMouseLeave={() => setShowAbuja(false)}
-              >
-                Abuja
-              </span>
-              , and was raised in{' '}
-              <span 
-                className="relative inline-block cursor-pointer font-bold text-green-600 hover:text-green-800 transition-colors"
-                onMouseEnter={() => setShowNigeria(true)}
-                onMouseLeave={() => setShowNigeria(false)}
-              >
-                Nigeria
-              </span>
-              .
-            </AnimatedParagraph>
-
-            {/* Lagos Popup - Fixed position */}
-            {showLagos && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                className="fixed top-1/4 left-1/2 transform -translate-x-1/2 z-[100] bg-white p-4 rounded-xl shadow-2xl border-4 border-blue-600"
-              >
-                <Image
-                  src="/lagos.png"
-                  alt="Lagos skyline"
-                  width={400}
-                  height={160}
-                  className="rounded-lg"
-                  unoptimized
-                />
-                <p className="text-center mt-2 font-mono text-sm text-gray-700">Lagos, Nigeria 🇳🇬</p>
-              </motion.div>
-            )}
-
-            {/* Abuja Popup - Fixed position */}
-            {showAbuja && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                className="fixed top-1/4 left-1/2 transform -translate-x-1/2 z-[100] bg-white p-4 rounded-xl shadow-2xl border-4 border-green-700"
-              >
-                <Image
-                  src="/abuja.png"
-                  alt="Abuja City Gate"
-                  width={220}
-                  height={300}
-                  className="rounded-lg"
-                  unoptimized
-                />
-                <p className="text-center mt-2 font-mono text-sm text-gray-700">Abuja City Gate</p>
-              </motion.div>
-            )}
-
-            {/* Nigeria Popup - Fixed position */}
-            {showNigeria && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                className="fixed top-1/4 left-1/2 transform -translate-x-1/2 z-[100] bg-white p-4 rounded-xl shadow-2xl border-4 border-green-600"
-              >
-                <Image
-                  src="/nigeria.png"
-                  alt="Nigerian flag"
-                  width={180}
-                  height={120}
-                  className="rounded-lg"
-                  unoptimized
-                />
-                <p className="text-center mt-2 font-mono text-sm text-gray-700">Nigerian Flag 🇳🇬</p>
-              </motion.div>
-            )}
 
             <AnimatedParagraph delay={0.4}>
               <span className="font-bold">Favorite writers:</span> Rick Riordan, James Baldwin, Ocean Vuong, and Roald Dahl.
