@@ -3,18 +3,9 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Document as DocumentType } from '@/types';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, FileText } from 'lucide-react';
+import Image from 'next/image';
 import FlipbookViewer from './FlipbookViewer';
-import dynamic from 'next/dynamic';
-
-const PDFPreview = dynamic(() => import('./PDFPreview'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 animate-pulse flex items-center justify-center">
-      <span className="text-gray-400 text-xs">Loading...</span>
-    </div>
-  ),
-});
 
 interface DocumentCardProps {
   document: DocumentType;
@@ -22,6 +13,7 @@ interface DocumentCardProps {
 
 export default function DocumentCard({ document }: DocumentCardProps) {
   const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const [hasCoverError, setHasCoverError] = useState(false);
 
   const handleClick = () => {
     setIsViewerOpen(true);
@@ -37,10 +29,25 @@ export default function DocumentCard({ document }: DocumentCardProps) {
         style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
       >
         <div className="relative w-64 h-80 bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 transition-shadow group-hover:shadow-2xl">
-          {/* Preview using react-pdf for consistency with the modal viewer */}
-          <div className="w-full h-full pointer-events-none">
-            <PDFPreview filePath={document.filePath} />
-          </div>
+          {/* Static first-page screenshot; PDF.js only runs when the card opens. */}
+          {hasCoverError ? (
+            <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-white via-gray-50 to-gray-200 px-6 text-center">
+              <FileText size={56} strokeWidth={1.25} className="mb-6 text-[#4169E1]/70" />
+              <span className="font-serif text-2xl font-bold text-gray-800">{document.title}</span>
+              <span className="mt-3 text-xs font-mono uppercase tracking-[0.25em] text-gray-500">
+                {document.category}
+              </span>
+            </div>
+          ) : (
+            <Image
+              src={document.coverImage}
+              alt={`First page of ${document.title}`}
+              fill
+              sizes="256px"
+              className="object-contain bg-white"
+              onError={() => setHasCoverError(true)}
+            />
+          )}
           
           {/* Overlay on Hover */}
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
