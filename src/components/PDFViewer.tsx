@@ -215,7 +215,6 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
           }
           error={null}
           options={{
-            disableWorker: true,
             cMapUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/cmaps/`,
             cMapPacked: true,
             standardFontDataUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/standard_fonts/`,

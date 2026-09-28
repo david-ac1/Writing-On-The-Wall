@@ -18,7 +18,6 @@ interface PDFPreviewProps {
 
 export default function PDFPreview({ filePath }: PDFPreviewProps) {
   const [hasError, setHasError] = useState(false);
-  const [hasLoaded, setHasLoaded] = useState(false);
 
   const handleLoadError = (error: Error) => {
     console.warn('PDF preview load error (falling back to icon):', error);
@@ -27,7 +26,6 @@ export default function PDFPreview({ filePath }: PDFPreviewProps) {
 
   const handleLoadSuccess = () => {
     setHasError(false);
-    setHasLoaded(true);
   };
 
   // Fallback UI for errors - simple and clean
@@ -52,7 +50,6 @@ export default function PDFPreview({ filePath }: PDFPreviewProps) {
       }
       error={null}
       options={{
-        disableWorker: true,
         cMapUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/cmaps/`,
         cMapPacked: true,
         disableStream: true,
