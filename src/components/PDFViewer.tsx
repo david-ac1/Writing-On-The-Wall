@@ -1,11 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize2, AlertCircle } from 'lucide-react';
 
 if (typeof window !== 'undefined' && !pdfjs.GlobalWorkerOptions.workerSrc) {
-  pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
+  try {
+    pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+  } catch {
+    pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
+  }
 }
 
 interface PDFViewerProps {
@@ -18,7 +22,8 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
   const [scale, setScale] = useState<number>(1.2);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [viewerKey, setViewerKey] = useState<number>(0);
+  const didAutoRecoverRef = useRef<boolean>(false);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -37,29 +42,28 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [pageNumber, numPages, hasError]);
 
-  useEffect(() => {
-    // Reset states when filePath changes
-    setHasError(false);
-    setIsLoading(true);
-    setPageNumber(1);
-  }, [filePath]);
-
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     try {
       setNumPages(numPages);
-      setIsLoading(false);
       setHasError(false);
+      didAutoRecoverRef.current = false;
     } catch (error) {
       console.error('Error setting document state:', error);
       setHasError(true);
-      setIsLoading(false);
     }
   }
 
   function onDocumentLoadError(error: Error) {
     console.error('PDF load error:', error);
+
+    if (error.message.includes('sendWithPromise') && !didAutoRecoverRef.current) {
+      didAutoRecoverRef.current = true;
+      setHasError(false);
+      setViewerKey(prev => prev + 1);
+      return;
+    }
+
     setHasError(true);
-    setIsLoading(false);
   }
 
   const handlePrevPage = () => {
@@ -83,11 +87,11 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
   };
 
   const handleRetry = () => {
+    didAutoRecoverRef.current = false;
     setHasError(false);
-    setIsLoading(true);
     setPageNumber(1);
-    // Force component re-render by updating key
-    window.location.reload();
+    setNumPages(0);
+    setViewerKey(prev => prev + 1);
   };
 
   // Error state UI
@@ -198,6 +202,7 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
         aria-label="Document content"
       >
         <Document
+          key={`${filePath}-${viewerKey}`}
           file={filePath}
           onLoadSuccess={onDocumentLoadSuccess}
           onLoadError={onDocumentLoadError}
