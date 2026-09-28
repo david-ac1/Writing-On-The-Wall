@@ -66,9 +66,9 @@ export const works: Document[] = [
     title: 'Avocadoes',
     category: 'Witness',
     coverImage: '/document-covers/avocadoes.jpg',
-    filePath: '/witness/AVOCADOES.md',
+    filePath: '/witness/AVOCADOES.pdf',
     description: 'Poem on decay and desire',
-    type: 'markdown',
+    type: 'pdf',
   },
   {
     id: 'shot-glass',
