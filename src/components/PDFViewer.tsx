@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { Document, Page } from 'react-pdf';
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize2, AlertCircle } from 'lucide-react';
 import { pdfjs } from '@/lib/pdfjs';
@@ -17,6 +17,16 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
   const [hasError, setHasError] = useState<boolean>(false);
   const [viewerKey, setViewerKey] = useState<number>(0);
   const didAutoRecoverRef = useRef<boolean>(false);
+  const documentOptions = useMemo(() => ({
+    cMapUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/cmaps/`,
+    cMapPacked: true,
+    standardFontDataUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/standard_fonts/`,
+    disableStream: true,
+    disableAutoFetch: true,
+    isEvalSupported: false,
+    useSystemFonts: true,
+    enableXfa: false,
+  }), []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -207,16 +217,7 @@ export default function PDFViewer({ filePath }: PDFViewerProps) {
             </div>
           }
           error={null}
-          options={{
-            cMapUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/cmaps/`,
-            cMapPacked: true,
-            standardFontDataUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/standard_fonts/`,
-            disableStream: true,
-            disableAutoFetch: true,
-            isEvalSupported: false,
-            useSystemFonts: true,
-            enableXfa: false,
-          }}
+          options={documentOptions}
         >
           <div className="shadow-2xl bg-white">
             <Page

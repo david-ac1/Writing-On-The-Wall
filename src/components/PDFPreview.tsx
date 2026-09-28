@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Document, Page } from 'react-pdf';
 import { FileText } from 'lucide-react';
 import { pdfjs } from '@/lib/pdfjs';
@@ -11,6 +11,15 @@ interface PDFPreviewProps {
 
 export default function PDFPreview({ filePath }: PDFPreviewProps) {
   const [hasError, setHasError] = useState(false);
+  const documentOptions = useMemo(() => ({
+    cMapUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/cmaps/`,
+    cMapPacked: true,
+    disableStream: true,
+    disableAutoFetch: true,
+    isEvalSupported: false,
+    useSystemFonts: true,
+    enableXfa: false,
+  }), []);
 
   const handleLoadError = (error: Error) => {
     console.warn('PDF preview load error (falling back to icon):', error);
@@ -42,15 +51,7 @@ export default function PDFPreview({ filePath }: PDFPreviewProps) {
         </div>
       }
       error={null}
-      options={{
-        cMapUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/cmaps/`,
-        cMapPacked: true,
-        disableStream: true,
-        disableAutoFetch: true,
-        isEvalSupported: false,
-        useSystemFonts: true,
-        enableXfa: false,
-      }}
+      options={documentOptions}
     >
       <Page 
         pageNumber={1} 
