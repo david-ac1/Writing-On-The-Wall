@@ -32,20 +32,6 @@ export default function Bookshelf({ works }: BookshelfProps) {
           >
             Poems, stories, and narrative fragments.
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-8"
-          >
-            <Link
-              href="/about"
-              className="inline-flex items-center rounded-full border border-[#4169E1]/15 bg-white/80 px-5 py-2 text-xs font-mono uppercase tracking-[0.3em] text-[#4169E1] shadow-sm transition-transform hover:-translate-y-0.5 hover:border-[#4169E1]/30 hover:bg-white"
-            >
-              About the author
-            </Link>
-          </motion.div>
         </header>
 
         {works.length === 0 ? (
