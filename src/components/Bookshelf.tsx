@@ -14,6 +14,15 @@ export default function Bookshelf({ works }: BookshelfProps) {
     <div className="min-h-screen py-14 px-4 sm:px-6 lg:px-8 pb-40">
       <div className="max-w-7xl mx-auto">
         <header className="text-center mb-14">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="mb-3 text-sm font-bold uppercase tracking-[0.35em] text-[#4169E1]"
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            EBUKA&apos;S
+          </motion.p>
           <Link href="/about" className="inline-block">
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
