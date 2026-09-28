@@ -52,6 +52,7 @@ export default function PDFPreview({ filePath }: PDFPreviewProps) {
       }
       error={null}
       options={{
+        disableWorker: true,
         cMapUrl: `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/cmaps/`,
         cMapPacked: true,
         disableStream: true,

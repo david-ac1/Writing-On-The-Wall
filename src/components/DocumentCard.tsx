@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Document as DocumentType } from '@/types';
 import { ExternalLink } from 'lucide-react';
 import FlipbookViewer from './FlipbookViewer';
+import PDFPreview from './PDFPreview';
 
 interface DocumentCardProps {
   document: DocumentType;
@@ -27,14 +28,9 @@ export default function DocumentCard({ document }: DocumentCardProps) {
         style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
       >
         <div className="relative w-64 h-80 bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 transition-shadow group-hover:shadow-2xl">
-          {/* PDF Preview using iframe */}
+          {/* Preview using react-pdf for consistency with the modal viewer */}
           <div className="w-full h-full pointer-events-none">
-            <iframe
-              src={`${document.filePath}#page=1&view=FitH&toolbar=0&navpanes=0&scrollbar=0${document.rotation ? `&rotate=${document.rotation}` : ''}`}
-              className="w-full h-full border-0"
-              title={`Preview of ${document.title}`}
-              style={document.rotation ? { transform: `rotate(${document.rotation}deg)` } : undefined}
-            />
+            <PDFPreview filePath={document.filePath} />
           </div>
           
           {/* Overlay on Hover */}
