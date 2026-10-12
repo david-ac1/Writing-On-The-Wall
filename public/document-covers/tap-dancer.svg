@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" role="img" aria-labelledby="title desc">
+  <title id="title">Tap dancer</title>
+  <desc id="desc">Cover for the poem Tap dancer</desc>
+  <rect width="640" height="800" fill="#f1e7d2" />
+  <path d="M0 590C130 520 215 650 330 570S500 480 640 550V800H0Z" fill="#183b56" />
+  <path d="M0 640C150 570 235 730 370 640S535 560 640 620V800H0Z" fill="#d66b4d" opacity=".9" />
+  <g fill="#f1e7d2" font-family="Georgia, serif">
+    <text x="52" y="112" font-size="28" letter-spacing="5">A POEM</text>
+    <text x="48" y="330" font-size="72">Tap</text>
+    <text x="48" y="410" font-size="72">dancer</text>
+    <text x="52" y="742" font-size="18" letter-spacing="3">CLICKETY CLACK</text>
+  </g>
+  <path d="M475 155l42 42m-20-62l42 42M470 270l78 78" stroke="#d66b4d" stroke-width="9" stroke-linecap="round" />
+</svg>

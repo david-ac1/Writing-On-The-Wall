@@ -170,6 +170,15 @@ export const works: Document[] = [
     description: 'Narrative exploration',
     type: 'pdf',
   },
+    {
+      id: 'tap-dancer',
+      title: 'Tap dancer',
+      category: 'Witness',
+      coverImage: '/document-covers/tap-dancer.svg',
+      filePath: '/witness/Tap dancer.pdf',
+      description: 'A poem about rhythm, distance, and return',
+      type: 'pdf',
+    },
 ];
 
 export const getCategoryWorks = (category: Document['category']) => {
