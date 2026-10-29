@@ -103,7 +103,7 @@ export const works: Document[] = [
     category: 'Witness',
     coverImage: '/document-covers/eulogy-straight-man.png',
     filePath: '/witness/Eulogy For A Straight Man (4).pdf',
-    description: 'A narrative exploration of identity',
+    description: 'A narrative exploration of my identity',
     type: 'pdf',
   },
   {
@@ -121,7 +121,7 @@ export const works: Document[] = [
     category: 'Witness',
     coverImage: '/document-covers/martini.png',
     filePath: '/witness/MARTINI.pdf',
-    description: 'Narrative poetry',
+    description: 'AIDS crisis in a run down bar',
     type: 'pdf',
   },
   {
@@ -130,7 +130,7 @@ export const works: Document[] = [
     category: 'Witness',
     coverImage: '/document-covers/prince-thousand-enemies.png',
     filePath: '/witness/Prince With A Thousand Enemies.pdf',
-    description: 'Epic narrative poem',
+    description: 'Queer Ramblings',
     type: 'pdf',
   },
   {
@@ -185,7 +185,7 @@ export const works: Document[] = [
       category: 'Witness',
       coverImage: '/document-covers/Liquor.png',
       filePath: '/witness/LIQUOR, DANCE, AND SOLILOQUY.pdf',
-      description: 'A poem about rhythm, distance, and return',
+      description: "Lots of cigarettes for a guy who doesn't smoke.",
       type: 'pdf',
     },
 ];
